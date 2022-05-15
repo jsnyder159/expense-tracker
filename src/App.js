@@ -26,6 +26,10 @@ const  App = () => {
     },
   ];
 
+  const addExpenseHandler = expense => {
+
+  };
+
   // Alternative to JSX, import React from 'react'; would need to be done on all components.
   // return React.createElement(
   //   'div',
@@ -36,7 +40,7 @@ const  App = () => {
 
   return (
     <div>
-      <NewExpense />
+      <NewExpense onAddExpense={addExpenseHandler}/>
       <Expenses items={expenses} />
     </div>
   );
