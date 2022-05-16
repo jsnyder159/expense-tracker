@@ -25,7 +25,7 @@ const ExpenseForm = (props) => {
     //   enteredTitle: event.target.value,
     // });
 
-    //Use this is function if your new state depends on previous state.
+    //Use this function if your new state depends on previous state.
     // setUserInput((prevState) => {
     //   return {
     //     ...prevState,
