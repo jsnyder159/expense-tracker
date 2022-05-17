@@ -3,84 +3,38 @@ import React, { useState } from "react";
 import "./ExpenseForm.css";
 
 const ExpenseForm = (props) => {
-  // Below is the difference between multiple states vs singular states.
 
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
 
-  // Using a singular state
-  //   const [userInput, setUserInput] = useState({
-  //     enteredTitle: "",
-  //     enteredAmount: "",
-  //     enteredDate: "",
-  //   });
-
   const titleChangeHandler = (event) => {
     setEnteredTitle(event.target.value);
-
-    // Using a singular state
-    // setUserInput({
-    //   ...userInput,
-    //   enteredTitle: event.target.value,
-    // });
-
-    //Use this function if your new state depends on previous state.
-    // setUserInput((prevState) => {
-    //   return {
-    //     ...prevState,
-    //     enteredTitle: event.target.value,
-    //   };
-    // });
   };
 
   const amountChangeHandler = (event) => {
     setEnteredAmount(event.target.value);
-
-    // setUserInput({
-    //   ...userInput,
-    //   enteredAmount: event.target.value,
-    // });
-
-    // setUserInput((prevState) => {
-    //     return {
-    //       ...prevState,
-    //       enteredAmount: event.target.value,
-    //     };
-    //   });
   };
 
   const dateChangeHandler = (event) => {
     setEnteredDate(event.target.value);
-
-    // setUserInput({
-    //   ...userInput,
-    //   enteredDate: event.target.value,
-    // });
-
-    // setUserInput((prevState) => {
-    //     return {
-    //       ...prevState,
-    //       enteredDate: event.target.value,
-    //     };
-    //   });
   };
 
   const submitHandler = (event) => {
-      event.preventDefault();
-      
-      const expenseData = {
-          title: enteredTitle,
-          amount: enteredAmount,
-          date: new Date(enteredDate),
-      };
+    event.preventDefault();
 
-      // Passing the information from Child to a Parent from point to function
-      props.onSaveExpenseData(expenseData);
-      
-      setEnteredTitle('');
-      setEnteredAmount('');
-      setEnteredDate('');
+    const expenseData = {
+      title: enteredTitle,
+      amount: enteredAmount,
+      date: new Date(enteredDate),
+    };
+
+    // Passing the information from Child to a Parent from point to function
+    props.onSaveExpenseData(expenseData);
+
+    setEnteredTitle("");
+    setEnteredAmount("");
+    setEnteredDate("");
   };
 
   return (
@@ -88,7 +42,11 @@ const ExpenseForm = (props) => {
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
-          <input type="text" value={enteredTitle} onChange={titleChangeHandler} />
+          <input
+            type="text"
+            value={enteredTitle}
+            onChange={titleChangeHandler}
+          />
         </div>
         <div className="new-expense__control">
           <label>Amount</label>
@@ -112,6 +70,7 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button type="button" onClick={props.onCancel}>Cancel</button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
